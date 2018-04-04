@@ -1,15 +1,16 @@
 import ExtractorSvc from './ExtractorSvc'
+import Forge from 'forge-apis'
 import rmdir from 'rmdir'
 import path from 'path'
-
+import 'babel-polyfill'
 
 const getToken = () => {
 
   return new Promise((resolve, reject) => {
 
     const oAuth2TwoLegged = new Forge.AuthClientTwoLegged(
-      process.env.FORGE_CLIENT_ID,
-      process.env.FORGE_CLIENT_SECRET,
+      process.env.FORGE_DEV_CLIENT_ID,
+      process.env.FORGE_DEV_CLIENT_SECRET,
       ['viewables:read'])
 
     oAuth2TwoLegged.authenticate().then ((token) => {
@@ -31,7 +32,7 @@ const extract = async () => {
 
     const name = 'MyForgeModel'
 
-    const urn = 'URN OF YOUR MODEL'
+    const urn = 'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bGVlZnNtcC1mb3JnZS1kZXYvUG5JRC5ud2Q='
 
     const token = await getToken()
 
